@@ -1,0 +1,15 @@
+services:
+  agarwood_backend:
+    image: agarwood-backend:local
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: agarwood_backend
+    restart: unless-stopped
+    networks:
+      - web
+    env_file:
+      - ../../../env/agarwood_website.env
+    volumes:
+      - ../backend/app:/app/app:ro
+      - ../backend/uploads:/app/uploads
